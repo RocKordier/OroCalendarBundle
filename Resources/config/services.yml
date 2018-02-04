@@ -497,3 +497,10 @@ services:
         class: Oro\Bundle\CalendarBundle\Resolver\EventOrganizerResolver
         arguments:
             - '@doctrine'
+
+    oro_calendar.event_listener.post_up.migration:
+        class: Oro\Bundle\CalendarBundle\EventListener\PostUpMigrationListener
+        arguments:
+            - "@doctrine"
+        tags:
+            - { name: kernel.event_listener, event: oro_migration.post_up, method: onPostUp, priority: -100 }
